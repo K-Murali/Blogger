@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Feed from "./components/Feed";
 import Formnote from "./components/Formnote";
 import Signup from "./components/Signup";
+import Home from "./components/Home";
 
 const App = () => {
   
@@ -16,6 +17,7 @@ const App = () => {
             <Navbar />
             <Routes>
               <Route exact path="/mynotes" element={<Feed />} />
+              <Route exact path="/" element={<Home />} />
               <Route exact path="/addnotes" element={<Formnote />} />
               <Route exact path="/signup" element={<Signup />} />
             </Routes>

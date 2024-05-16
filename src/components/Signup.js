@@ -1,13 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { noteContext } from "../context/notes/NoteState";
-import BASE_URL from "../utils/api"
-
+import BASE_URL from "../utils/api";
 
 const Signup = () => {
-
   const [loginflag, setloginflag] = useState(false);
   const [msg, setmsg] = useState(true);
+  const [loader, setloader] = useState(false);
   const [details, setdetails] = useState({
     username: "",
     email: "",
@@ -19,31 +18,37 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handlesubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const { username, email, password } = details;
+      const { username, email, password } = details;
 
-    let options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: username, email, password }),
-    };
-    let base_url = `${BASE_URL}/api/auth/createuser`;
-    if (!loginflag) {
-      options.body = JSON.stringify({ email, password });
-      base_url = `${BASE_URL}/api/auth/login`;
-    }
-    const res = await fetch(base_url, options);
-    const json = await res.json();
-    setlog(json.success);
-    if (json.success) {
-      localStorage.setItem("token", json.authtoken);
-      setauth(json.authtoken);
-      navigate("/mynotes");
-    } else {
-      setmsg(json.error);
+      let options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: username, email, password }),
+      };
+      let base_url = `${BASE_URL}/api/auth/createuser`;
+      if (!loginflag) {
+        options.body = JSON.stringify({ email, password });
+        base_url = `${BASE_URL}/api/auth/login`;
+      }
+      setloader(true);
+      const res = await fetch(base_url, options);
+      const json = await res.json();
+      setloader(false);
+      setlog(json.success);
+      if (json.success) {
+        localStorage.setItem("token", json.authtoken);
+        setauth(json.authtoken);
+        navigate("/mynotes");
+      } else {
+        setmsg(json.error);
+      }
+    } catch (err) {
+      setmsg(err);
     }
   };
   const onchange = (e) => {
@@ -64,7 +69,7 @@ const Signup = () => {
         }}
       >
         <div className="absolute bg-gradient-to-b from-green-500 to-green-400 opacity-75 inset-0 z-0"></div>
-        <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
+        <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center relative">
           <div className="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10">
             <div className="self-start hidden lg:flex flex-col  text-white">
               <h1 className="mb-3 font-bold text-5xl">Hi ? Welcome Back... </h1>
@@ -141,6 +146,7 @@ const Signup = () => {
                     type="password"
                     placeholder="Enter your password"
                   />
+                  
                   {!log && <div className="text-sm text-error">{msg} </div>}
                 </div>
                 <div className="flex items-center justify-between">
@@ -165,7 +171,9 @@ const Signup = () => {
                     type="submit"
                     className="w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                   >
-                    {!loginflag ? "Login" : "Sign up"}
+                  {loader ? (
+                    <div className="loading loading-dots loading-sm"></div>
+                  ):!loginflag ? "Login" : "Sign up"}
                   </button>
                 </div>
               </form>

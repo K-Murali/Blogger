@@ -13,7 +13,7 @@ const NoteState = (props) => {
   const [auth, setauth] = useState(
     localStorage.getItem("token") ? localStorage.getItem("token") : ""
   );
-  const [log, setlog] = useState(true); //success true;
+  const [log, setlog] = useState(false); //success true;
 
   // add a note
   const addnote = async (newnote) => {
