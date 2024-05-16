@@ -45,9 +45,11 @@ const Signup = () => {
         setauth(json.authtoken);
         navigate("/mynotes");
       } else {
+        
         setmsg(json.error);
       }
     } catch (err) {
+      console.log(err);
       setmsg(err);
     }
   };
@@ -146,7 +148,7 @@ const Signup = () => {
                     type="password"
                     placeholder="Enter your password"
                   />
-                  
+
                   {!log && <div className="text-sm text-error">{msg} </div>}
                 </div>
                 <div className="flex items-center justify-between">
@@ -171,9 +173,13 @@ const Signup = () => {
                     type="submit"
                     className="w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                   >
-                  {loader ? (
-                    <div className="loading loading-dots loading-sm"></div>
-                  ):!loginflag ? "Login" : "Sign up"}
+                    {loader ? (
+                      <div className="loading loading-dots loading-sm"></div>
+                    ) : !loginflag ? (
+                      "Login"
+                    ) : (
+                      "Sign up"
+                    )}
                   </button>
                 </div>
               </form>
