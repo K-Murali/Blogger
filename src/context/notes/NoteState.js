@@ -13,8 +13,9 @@ const NoteState = (props) => {
   const [auth, setauth] = useState(
     localStorage.getItem("token") ? localStorage.getItem("token") : ""
   );
-  const [log, setlog] = useState(false); //success true;
+ 
 
+  
   // add a note
   const addnote = async (newnote) => {
     const { title, description, tag } = newnote;
@@ -118,8 +119,6 @@ const NoteState = (props) => {
 
         setauth,
         auth,
-        log,
-        setlog,
       }}
     >
       {props.children}

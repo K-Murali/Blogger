@@ -12,7 +12,7 @@ const Signup = () => {
     email: "",
     password: "",
   });
-  const { setauth, log, setlog } = useContext(noteContext);
+  const { setauth,} = useContext(noteContext);
 
   useEffect(() => {}, [loginflag]);
   const navigate = useNavigate();
@@ -39,13 +39,12 @@ const Signup = () => {
       const res = await fetch(base_url, options);
       const json = await res.json();
       setloader(false);
-      setlog(json.success);
       if (json.success) {
         localStorage.setItem("token", json.authtoken);
         setauth(json.authtoken);
+        setloginflag(true);
         navigate("/mynotes");
       } else {
-        
         setmsg(json.error);
       }
     } catch (err) {
@@ -149,7 +148,7 @@ const Signup = () => {
                     placeholder="Enter your password"
                   />
 
-                  {!log && <div className="text-sm text-error">{msg} </div>}
+                  {<div className="text-sm text-error">{msg} </div>}
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">

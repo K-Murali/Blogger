@@ -9,7 +9,7 @@ export default function Navbar() {
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"
   );
 
-  const { auth, setauth } = useContext(noteContext);
+  const { auth, setauth,setnotes } = useContext(noteContext);
 
   useEffect(() => {}, [auth]);
 
@@ -17,6 +17,7 @@ export default function Navbar() {
     e.preventDefault();
     setauth("");
     localStorage.setItem("token", "");
+    setnotes([])
     navigate("/signup");
   };
 

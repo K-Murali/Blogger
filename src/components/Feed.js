@@ -5,7 +5,7 @@ import Alert from "./Alert";
 import Loading from "./Loding";
 
 const Feed = () => {
-  const { notes, auth, alert, setalert, flag, getnote } =
+  const { notes, auth, alert, setalert,flag, getnote } =
     useContext(noteContext);
 
   setTimeout(() => {
@@ -17,7 +17,7 @@ const Feed = () => {
   }, [flag, auth]);
 
   return flag === false ? (
-    <Loading />
+    <Loading/>
   ) : (
     <div className=" flex  flex-col">
       {alert && <Alert message="This is deleted" />}
