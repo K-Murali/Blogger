@@ -45,6 +45,9 @@ const Noteitem = (props) => {
   // const [saved, setsaved] = useState();
 
   const handleLike = async () => {
+    if (localStorage.getItem("token")) {
+      return;
+    }
     const res = await getlike(props.id);
     console.log(res);
     setLikes(res.likes);
@@ -55,6 +58,9 @@ const Noteitem = (props) => {
   };
   const handle_comment_submit = async (e) => {
     e.preventDefault();
+    if (localStorage.getItem("token")) {
+      return;
+    }
 
     const res = await addcomment({
       tour: props.id,
@@ -73,7 +79,9 @@ const Noteitem = (props) => {
   }, [likes, showComments]);
 
   const handlesave = async () => {
-    // Implement save functionality
+    if (localStorage.getItem("token")) {
+      return;
+    }
     console.log(localStorage.getItem("saved"));
     await savetour({ userid: props.userid, tourid: props.id });
   };
@@ -129,6 +137,9 @@ const Noteitem = (props) => {
                   <div className="flex justify-center  items-center">
                     <span className=" ml-2">{likes}</span>
                     <button
+                      disabled={
+                        localStorage.getItem("token").length == 0 ? true : false
+                      }
                       onClick={handleLike}
                       className="rounded w-fit h-auto p-1 from-zinc-50"
                     >
@@ -142,6 +153,9 @@ const Noteitem = (props) => {
                       {props.comments ? props.comments.length : ""}{" "}
                     </span>
                     <button
+                      disabled={
+                        localStorage.getItem("token").length == 0 ? true : false
+                      }
                       onClick={handlecomments}
                       className=" rounded w-fit h-auto p-1  from-zinc-50"
                     >
@@ -165,6 +179,9 @@ const Noteitem = (props) => {
               <div className="">
                 <div className=" flex-col ">
                   <button
+                    disabled={
+                      localStorage.getItem("token").length == 0 ? true : false
+                    }
                     onClick={handledelete}
                     className={`ml-2 rounded w-fit h-auto p-1 mt-2 mb-5 from-zinc-50 ${
                       !props.del_edit_flag ? "hidden" : ""
@@ -182,6 +199,9 @@ const Noteitem = (props) => {
                   </button>
 
                   <button
+                    disabled={
+                      localStorage.getItem("token").length == 0 ? true : false
+                    }
                     onClick={handlesave}
                     className={`ml-2 rounded w-fit h-auto  mb-5 from-zinc-50 ${
                       props.del_edit_flag ? "hidden" : ""

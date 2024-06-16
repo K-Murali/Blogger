@@ -36,7 +36,9 @@ const Readmore = () => {
   ];
   const handle_comment_submit = async (e) => {
     e.preventDefault();
-
+    if (localStorage.getItem("token")) {
+      return;
+    }
     const res = await addcomment({
       tour: localStorage.getItem("id"),
       users: localStorage.getItem("userid"),
@@ -46,6 +48,9 @@ const Readmore = () => {
   };
 
   const handleLike = async () => {
+    if (localStorage.getItem("token")) {
+      return;
+    }
     const res = await getlike(localStorage.getItem("id"), likes);
     console.log(res);
     setlikes(res.likes);
@@ -85,11 +90,22 @@ const Readmore = () => {
             />
             <div className="flex justify-between sm:w-full md:full lg:w-11/12  mb-4">
               <div className="flex   gap-4 text-lg">
-                <button onClick={handleLike} className="flex items-center">
+                <button
+                  disabled={
+                    localStorage.getItem("token").length == 0 ? true : false
+                  }
+                  onClick={handleLike}
+                  className="flex items-center"
+                >
                   <AiOutlineLike className="w-6 h-6 " />
                   <span className="text-md"> {likes} likes</span>
                 </button>
-                <button className="flex items-center">
+                <button
+                  disabled={
+                    localStorage.getItem("token").length == 0 ? true : false
+                  }
+                  className="flex items-center"
+                >
                   <FaRegComment className="w-5 h-6 mr-1" />
                   <span className="text-md">
                     {currnote.comments.length}&nbsp;comments
