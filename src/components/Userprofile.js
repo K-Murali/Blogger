@@ -64,7 +64,7 @@ const Userprofile = () => {
       <>
         {alert && <Alert msg={msg} />}
         <div className="flex justify-center min-h-screen">
-          <div className="flex justify-center items-center shadow-xl rounded-lg border-2 lg:m-5 lg:p-5 md:m-3 sm:m-1 flex-col w-[900px] h-auto">
+          <div className="flex justify-center items-center shadow-xl rounded-lg border-2 lg:m-5 p-5 md:m-3 sm:m-3 flex-col w-[900px] h-auto">
             <h1 className="text-2xl  font-bold">Your Account</h1>
             <div className="flex flex-col md:flex-row justify-center items-center gap-2 w-full mt-10">
               <div className="flex p-3 items-center justify-between h-auto">
