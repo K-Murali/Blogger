@@ -15,11 +15,11 @@ const Home = () => {
 
   return (
     <div style={containerStyle}>
-      {auth.length>0 ? (
+      {auth.length > 0 ? (
         <div className="font-thin text-4xl text-zinc-600">
           <button className="btn btn-active btn-ghost">
             <Link className="text-2xl" to="/addnotes">
-              write your Blog here...
+              Write your Blog here...
             </Link>
           </button>
         </div>
@@ -27,7 +27,7 @@ const Home = () => {
         <div className="font-thin text-4xl text-zinc-600">
           <button className="btn btn-active btn-ghost">
             <Link className="text-2xl" to="/signup">
-              Please login
+              U can like and comment only if you login...
             </Link>
           </button>
         </div>

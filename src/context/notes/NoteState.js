@@ -44,7 +44,7 @@ const NoteState = (props) => {
     setflag(true);
     setnotes(allnote);
     setalert(true);
-    setmessage("New Notes added...");
+    setmessage("New post added...");
   };
   const addcomment = async (data) => {
     const options = {
