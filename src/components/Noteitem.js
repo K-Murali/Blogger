@@ -73,7 +73,6 @@ const Noteitem = (props) => {
   }, [likes, showComments]);
 
   const handlesave = async () => {
-    console.log(localStorage.getItem("saved"));
     await savetour({ userid: props.userid, tourid: props.id });
   };
 
