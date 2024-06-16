@@ -36,9 +36,7 @@ const Readmore = () => {
   ];
   const handle_comment_submit = async (e) => {
     e.preventDefault();
-    if (localStorage.getItem("token")) {
-      return;
-    }
+
     const res = await addcomment({
       tour: localStorage.getItem("id"),
       users: localStorage.getItem("userid"),
@@ -48,9 +46,6 @@ const Readmore = () => {
   };
 
   const handleLike = async () => {
-    if (localStorage.getItem("token")) {
-      return;
-    }
     const res = await getlike(localStorage.getItem("id"), likes);
     console.log(res);
     setlikes(res.likes);

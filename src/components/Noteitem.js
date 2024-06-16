@@ -45,9 +45,7 @@ const Noteitem = (props) => {
   // const [saved, setsaved] = useState();
 
   const handleLike = async () => {
-    if (localStorage.getItem("token")) {
-      return;
-    }
+  
     const res = await getlike(props.id);
     console.log(res);
     setLikes(res.likes);
@@ -58,9 +56,7 @@ const Noteitem = (props) => {
   };
   const handle_comment_submit = async (e) => {
     e.preventDefault();
-    if (localStorage.getItem("token")) {
-      return;
-    }
+   
 
     const res = await addcomment({
       tour: props.id,
@@ -79,9 +75,7 @@ const Noteitem = (props) => {
   }, [likes, showComments]);
 
   const handlesave = async () => {
-    if (localStorage.getItem("token")) {
-      return;
-    }
+   
     console.log(localStorage.getItem("saved"));
     await savetour({ userid: props.userid, tourid: props.id });
   };
