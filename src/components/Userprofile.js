@@ -162,7 +162,7 @@ const Userprofile = () => {
                     <img
                       className="h-44 cursor-pointer w-72 border rounded m-1"
                       alt=""
-                      src={`https://notedb.onrender.com/${e.photo}`}
+                      src={`https://notedb.onrender.com/Images/${e.photo}`}
                     />
                   </div>
                 ))}
@@ -176,7 +176,7 @@ const Userprofile = () => {
                     <img
                       className="h-44 w-72  cursor-pointer border rounded m-1"
                       alt=""
-                      src={`https://notedb.onrender.com/${e.photo}`}
+                      src={`https://notedb.onrender.com/Images/${e.photo}`}
                     />
                   </div>
                 ))}
@@ -190,7 +190,7 @@ const Userprofile = () => {
                     <img
                       className="h-44 w-72  cursor-pointer border rounded m-1"
                       alt=""
-                      src={`https://notedb.onrender.com/${e.photo}`}
+                      src={`https://notedb.onrender.com/Images/${e.photo}`}
                     />
                   </div>
                 ))}
