@@ -12,7 +12,7 @@ const Signup = () => {
     email: "",
     password: "",
   });
-  const { setauth,} = useContext(noteContext);
+  const { setauth, setname, setuserid } = useContext(noteContext);
 
   useEffect(() => {}, [loginflag]);
   const navigate = useNavigate();
@@ -38,17 +38,27 @@ const Signup = () => {
       setloader(true);
       const res = await fetch(base_url, options);
       const json = await res.json();
+
       setloader(false);
       if (json.success) {
+        console.log(json);
         localStorage.setItem("token", json.authtoken);
+        localStorage.setItem("name", json.name);
+        localStorage.setItem("email", json.data.user.email);
+        localStorage.setItem("userid", json.data.user.id);
+        // localStorage.setItem("saved", json.data.user.saved);
+
+        setname(json.name);
         setauth(json.authtoken);
+        setuserid(json.data.user.id);
+
         setloginflag(true);
         navigate("/mynotes");
       } else {
         setmsg(json.error);
       }
     } catch (err) {
-      console.log(err);
+      console.log("this is error message" + err.message);
       setmsg(err);
     }
   };

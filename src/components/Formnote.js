@@ -1,104 +1,118 @@
-import React from "react";
-// import background from '../utils/bg4.jpeg'
-import { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { noteContext } from "../context/notes/NoteState";
 import Alert from "./Alert";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const Formnote = () => {
-  const [newnote, setnewnote] = useState({
+  const [file, setFile] = useState(null);
+  const [newnote, setNewnote] = useState({
     title: "",
-    description: "",
     tag: "",
+    description: "",
+    para: "",
   });
+  const [isFormValid, setIsFormValid] = useState(false);
   const { alert, setalert, addnote, flag, getnote } = useContext(noteContext);
 
+  // useEffect(() => {
+  //   getnote();
+  // }, [flag]);
+
   useEffect(() => {
-    getnote();
-  }, [flag]);
+    const timer = setTimeout(() => {
+      setalert(false);
+    }, 9000);
+    return () => clearTimeout(timer);
+  }, [alert, setalert]);
+
+  const validateForm = () => {
+    const { title, tag, description, para } = newnote;
+    if (title && tag && description && para && file) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  };
 
   const onchange = (e) => {
-    setnewnote({ ...newnote, [e.target.name]: e.target.value });
+    setNewnote({ ...newnote, [e.target.name]: e.target.value });
+    validateForm();
+  };
+
+  const handleQuillChange = (value) => {
+    setNewnote({ ...newnote, para: value });
+    validateForm();
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    validateForm();
   };
 
   const handleclick = (e) => {
     e.preventDefault();
-    addnote(newnote);
-  };
 
-  setTimeout(() => {
-    setalert(false);
-  }, 9000);
+    const formData = new FormData();
+    formData.append("title", newnote.title);
+    formData.append("tag", newnote.tag);
+    formData.append("description", newnote.description);
+    formData.append("para", newnote.para);
+    if (file) {
+      formData.append("photo", file);
+    }
+
+    addnote(formData);
+  };
 
   return (
     <>
-      {/* style={{ backgroundImage: `url(${background})` }}  */}
       {alert && <Alert message="This is deleted" />}
-      <div className="bg-scroll bg-cover ">
-        <div className="  items-center justify-center  h-dvh flex flex-col   ">
-          {/* making items center */}
-          <h1 className=" mt-5 text-3xl ">Add Something </h1>
-          <form
-            className="mb-2.5  w-4/6 container  flex flex-col items-center justify-center "
-            action=""
-          >
-            <label className="form-control   w-full">
-              {" "}
-              <span className=" label-text flex flex-col ">
-                {" "}
-                <h1 className="   text-lg m-2 ">Title</h1>
-              </span>
-            </label>
-            <input
-              minLength={3}
-              required={true}
-              name="title"
-              onChange={onchange}
-              type="text"
-              placeholder="Enter your Title"
-              className=" border-b-2 p-2 rounded   focus:outline-none border-gray-500  w-full"
-            />
-
-            <label className="form-control   w-full">
-              {" "}
-              <span className="label-text flex flex-col ">
-                {" "}
-                <h1 className="  text-lg m-2 ">Description</h1>
-              </span>
-            </label>
-            <textarea
-              minLength={5}
-              required={true}
-              name="description"
-              rows="5"
-              onChange={onchange}
-              type="text"
-              placeholder=" Enter the content"
-              className="border-b-2 p-2  rounded    focus:outline-none border-gray-500  h-9/12 w-full"
-            />
-
-            <label className="form-control   w-full">
-              {" "}
-              <span className="label-text flex flex-col ">
-                {" "}
-                <h1 className="  text-lg m-2 ">Tag</h1>
-              </span>
-            </label>
-            <input
-              name="tag"
-              onChange={onchange}
-              type="text"
-              placeholder="Keep some Tag"
-              className=" border-b-2 p-2 rounded   focus:outline-none border-gray-500 mb-5 w-full"
-            />
-            <button
-              disabled={
-                newnote.title.length < 3 || newnote.description.length < 5
-              }
-              className=" text-white hover:bg-white hover:text-success hover: border-info mt-2  border-2  bg-success rounded     w-20  h-auto p-1 mb-5 from-zinc-50"
-              onClick={handleclick}
-            >
-              Post
-            </button>
+      <div className="flex justify-center align-middle md:m-24 flex-col">
+        <div>
+          <h1 className="my-5 text-center text-3xl text-pretty text-fuchsia-950">
+            Create your content here
+          </h1>
+        </div>
+        <div className="block">
+          <form className="form">
+            <div className="flex flex-col p-2 gap-4">
+              <input
+                name="title"
+                type="text"
+                placeholder="title"
+                onChange={onchange}
+                className="input focus:outline-none bordered input-bordered w-full"
+              />
+              <input
+                name="tag"
+                type="text"
+                placeholder="tag"
+                onChange={onchange}
+                className="input focus:outline-none bordered input-bordered w-full"
+              />
+              <input
+                name="description"
+                type="text"
+                placeholder="summary"
+                onChange={onchange}
+                className="input focus:outline-none bordered input-bordered w-full"
+              />
+              <input
+                name="photo"
+                type="file"
+                onChange={handleFileChange}
+                className="file-input text-md file-input-bordered w-full"
+              />
+              <ReactQuill value={newnote.para} onChange={handleQuillChange} />
+              <button
+                type="submit"
+                onClick={handleclick}
+                className="btn btn-outline btn-success"
+              >
+                Create post
+              </button>
+            </div>
           </form>
         </div>
       </div>

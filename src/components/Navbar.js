@@ -9,15 +9,16 @@ export default function Navbar() {
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"
   );
 
-  const { auth, setauth,setnotes } = useContext(noteContext);
+  const { auth, setauth, setuserid, setnotes, name } = useContext(noteContext);
 
-  useEffect(() => {}, [auth]);
+  useEffect(() => {}, [auth, name]);
 
   const handlelogout = (e) => {
     e.preventDefault();
     setauth("");
     localStorage.setItem("token", "");
-    setnotes([])
+    setuserid("");
+    setnotes([]);
     navigate("/signup");
   };
 
@@ -70,7 +71,12 @@ export default function Navbar() {
                   </li>
                   <li>
                     <Link to="/mynotes" className="text-lg">
-                      My Library
+                      My Posts
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/allnotes" className="text-lg">
+                      Home
                     </Link>
                   </li>
                   {/* <li><Link to='/about' className='text-lg'>About</Link></li> */}
@@ -101,8 +107,13 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/allnotes" className="text-lg">
+                    Home
+                  </Link>
+                </li>
+                <li>
                   <Link to="/mynotes" className="text-lg">
-                    My Library
+                    My Posts
                   </Link>
                 </li>
                 {/* <li><Link to='/about' className='text-lg'>About me</Link></li> */}
@@ -163,8 +174,9 @@ export default function Navbar() {
                 {auth.length !== 0 && (
                   <li>
                     {" "}
-                    <Link to="/contact" className="justify-between">
-                      Profile<span className="badge">New</span>
+                    <Link to="/myprofile" className="justify-between">
+                      {localStorage.getItem("name")}
+                      <span className="badge">New</span>
                     </Link>{" "}
                   </li>
                 )}
