@@ -26,8 +26,8 @@ const Userprofile = () => {
   };
   const { getuserbyid, user, setalert, alert, flag, updateuser } =
     useContext(noteContext);
-  const [saved, setsaved] = useState(false);
-  const [post, setpost] = useState(true);
+  const [saved, setsaved] = useState(true);
+  const [post, setpost] = useState(false);
   const [liked, setliked] = useState(false);
 
   setTimeout(() => {
@@ -64,7 +64,7 @@ const Userprofile = () => {
       <>
         {alert && <Alert msg={msg} />}
         <div className="flex justify-center min-h-screen">
-          <div className="flex justify-center items-center shadow-xl rounded-lg border-2 m-5 p-5 flex-col w-[900px] h-auto">
+          <div className="flex justify-center items-center shadow-xl rounded-lg border-2 m-5 lg:p-5 md:p-3 sm:p-1 flex-col w-[900px] h-auto">
             <h1 className="text-2xl  font-bold">Your Account</h1>
             <div className="flex flex-col md:flex-row justify-center items-center gap-2 w-full mt-10">
               <div className="flex p-3 items-center justify-between h-auto">
