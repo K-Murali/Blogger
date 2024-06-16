@@ -132,7 +132,7 @@ const Noteitem = (props) => {
                     <span className=" ml-2">{likes}</span>
                     <button
                       disabled={
-                        localStorage.getItem("token").length == 0 ? true : false
+                        localStorage.getItem("token").length === 0 ? true : false
                       }
                       onClick={handleLike}
                       className="rounded w-fit h-auto p-1 from-zinc-50"
