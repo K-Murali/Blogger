@@ -45,7 +45,6 @@ const Noteitem = (props) => {
   // const [saved, setsaved] = useState();
 
   const handleLike = async () => {
-  
     const res = await getlike(props.id);
     console.log(res);
     setLikes(res.likes);
@@ -56,7 +55,6 @@ const Noteitem = (props) => {
   };
   const handle_comment_submit = async (e) => {
     e.preventDefault();
-   
 
     const res = await addcomment({
       tour: props.id,
@@ -75,7 +73,6 @@ const Noteitem = (props) => {
   }, [likes, showComments]);
 
   const handlesave = async () => {
-   
     console.log(localStorage.getItem("saved"));
     await savetour({ userid: props.userid, tourid: props.id });
   };
@@ -132,7 +129,9 @@ const Noteitem = (props) => {
                     <span className=" ml-2">{likes}</span>
                     <button
                       disabled={
-                        localStorage.getItem("token").length === 0 ? true : false
+                        localStorage.getItem("token").length === 0
+                          ? true
+                          : false
                       }
                       onClick={handleLike}
                       className="rounded w-fit h-auto p-1 from-zinc-50"
@@ -147,9 +146,6 @@ const Noteitem = (props) => {
                       {props.comments ? props.comments.length : ""}{" "}
                     </span>
                     <button
-                      disabled={
-                        localStorage.getItem("token").length == 0 ? true : false
-                      }
                       onClick={handlecomments}
                       className=" rounded w-fit h-auto p-1  from-zinc-50"
                     >
@@ -241,7 +237,11 @@ const Noteitem = (props) => {
                   // onChange={onchange}
                   className=" mb-4 border-b-2 p-2 rounded w-full  focus:outline-none bg-gray-200   border-gray-400"
                 />
-                <button>
+                <button
+                  disabled={
+                    localStorage.getItem("token").length == 0 ? true : false
+                  }
+                >
                   <FaArrowAltCircleRight onClick={handle_comment_submit} />
                 </button>
               </div>
