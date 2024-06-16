@@ -112,7 +112,7 @@ const Noteitem = (props) => {
             <img
               className="h-52  w-96 border rounded"
               alt=""
-              src={`http://localhost:8000/Images/${props.photo}`}
+              src={`https://notedb.onrender.com/${props.photo}`}
             />
           </div>
           <div className="h-48 overflow-hidden">

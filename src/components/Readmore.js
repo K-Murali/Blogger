@@ -80,7 +80,7 @@ const Readmore = () => {
             </div>
             <img
               className="border-2 h-auto sm:w-full md:full lg:w-11/12  mb-4"
-              src={`http://localhost:8000/Images/${currnote.photo}`}
+              src={`https://notedb.onrender.com/${currnote.photo}`}
               alt="Post"
             />
             <div className="flex justify-between sm:w-full md:full lg:w-11/12  mb-4">
