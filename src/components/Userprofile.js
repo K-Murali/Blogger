@@ -174,7 +174,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className="lg:h-44 lg:w-72 w-36 h-15  cursor-pointer border rounded m-1"
+                      className="lg:h-44 lg:w-72 w-36 h-12  cursor-pointer border rounded m-1"
                       alt=""
                       src={`https://notedb.onrender.com/Images/${e.photo}`}
                     />
@@ -188,7 +188,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className="lg:h-44 lg:w-72 lg:m-1 w-32 h-20   cursor-pointer border rounded "
+                      className="lg:h-44 lg:w-72 lg:m-1 w-32 h-12   cursor-pointer border rounded "
                       alt=""
                       src={`https://notedb.onrender.com/Images/${e.photo}`}
                     />
