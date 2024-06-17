@@ -24,7 +24,7 @@ const Social = () => {
       {alert && <Alert message="This is deleted" />}
       <div className="flex-col justify-center items-center">
         <div className="flex-row">
-          <form className={`flex justify-center  lg:my-10 `} role="search">
+          <form className={`flex justify-center  my-10 `} role="search">
             <input
               id="topic"
               className={`bg-gray-200 me-4 text-black rounded  placeholder-black   focus:outline-none cursor-black  input-bordered w-4/6 p-2 bg-${
