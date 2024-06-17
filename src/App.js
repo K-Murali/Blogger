@@ -7,7 +7,6 @@ import Formnote from "./components/Formnote";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
 import Social from "./components/Social";
-import Postdetail from "./components/Postdetail";
 import Loader from "./components/Loader";
 import Readmore from "./components/Readmore";
 import Userprofile from "./components/Userprofile";
@@ -24,9 +23,9 @@ const App = () => {
               <Route exact path="/mynotes" element={<Feed />} />
               <Route exact path="/myprofile" element={<Userprofile />} />
               <Route exact path="/readmore" element={<Readmore />} />
-              <Route exact path="/Blogger" element={<Home />} />
+              {/* <Route exact path="/Blogger" element={<Home />} /> */}
               <Route exact path="/addnotes" element={<Formnote />} />
-              <Route exact path="/allnotes" element={<Social />} />
+              <Route exact path="/Blogger" element={<Social />} />
               <Route exact path="/signup" element={<Signup />} />
             </Routes>
           </div>

@@ -10,6 +10,7 @@ const NoteState = (props) => {
   const [userid, setuserid] = useState(
     localStorage.getItem("userid") ? localStorage.getItem("userid") : "null"
   );
+  const [mode, setmode] = useState(localStorage.getItem("theme"));
 
   const [currnote, setcurrnote] = useState(null);
   const [user, setuser] = useState(null);
@@ -304,6 +305,7 @@ const NoteState = (props) => {
         getuserbyid,
         getlike,
         updateuser,
+        mode,
 
         alert,
         setalert,

@@ -25,8 +25,10 @@ export default function Navbar() {
   // update state on toggle
   const handleToggle = (e) => {
     if (e.target.checked) {
+      localStorage.setItem("theme", "dark");
       setTheme("dark");
     } else {
+      localStorage.setItem("theme", "light");
       setTheme("light");
     }
   };
@@ -75,7 +77,7 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/allnotes" className="text-lg">
+                    <Link to="/Blogger" className="text-lg">
                       Home
                     </Link>
                   </li>
@@ -107,7 +109,7 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/allnotes" className="text-lg">
+                  <Link to="/Blogger" className="text-lg">
                     Home
                   </Link>
                 </li>

@@ -64,15 +64,15 @@ const Userprofile = () => {
       <>
         {alert && <Alert msg={msg} />}
         <div className="flex justify-center min-h-screen">
-          <div className="flex justify-center items-center shadow-xl rounded-lg border-2 m-5 p-5  flex-col w-[900px] h-auto">
+          <div className="flex justify-around items-center shadow-2xl rounded-lg border-2 m-5 p-5  flex-col w-[900px] h-auto">
             <h1 className="text-2xl  font-bold">Your Account</h1>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-2 w-full mt-10">
-              <div className="flex p-3 items-center justify-between h-auto">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-2 w-full ">
+              <div className="flex lg:p-3 items-center justify-between h-auto">
                 <label
                   htmlFor="dropzone-file"
                   className="flex flex-col items-center justify-center lg:h-64 sm:h-fit rounded-lg cursor-pointer"
                 >
-                  <div className="flex flex-col justify-center items-center gap-4 pt-5 pb-6">
+                  <div className="flex flex-col justify-center items-center  pt-5 pb-6">
                     <img
                       className="border-2 border-black p-1 w-32 h-32 md:w-36 md:h-28 lg:w-44 lg:h-36 rounded-full mb-4"
                       src={img}
@@ -135,7 +135,7 @@ const Userprofile = () => {
                   <span className="mr-1">
                     <FaRegBookmark className="w-4 h-4" />
                   </span>
-                  <span>Saved</span>
+                  <span>&nbsp;Saved</span>
                 </div>
                 <div
                   onClick={handleliked}
@@ -146,11 +146,11 @@ const Userprofile = () => {
                   <span className="mr-1">
                     <FaArrowAltCircleRight className="w-4 h-4" />
                   </span>
-                  <span>Interaction</span>
+                  <span>&nbsp;Liked</span>
                 </div>
               </div>
             </div>
-            <div className="flex  justify-center p flex-wrap">
+            <div className="flex  justify-center  flex-wrap">
               {saved &&
                 user.saved &&
                 user.saved.map((e, index) => (
@@ -160,7 +160,7 @@ const Userprofile = () => {
                     // important ewhen ever we give paramete in the fun we should call it like this!!!!!!!!
                   >
                     <img
-                      className="h-44 cursor-pointer w-72 border rounded m-1"
+                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-15 border rounded m-1"
                       alt=""
                       src={`https://notedb.onrender.com/Images/${e.photo}`}
                     />
@@ -174,7 +174,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className="h-44 w-72  cursor-pointer border rounded m-1"
+                      className="lg:h-44 lg:w-72 w-36 h-15  cursor-pointer border rounded m-1"
                       alt=""
                       src={`https://notedb.onrender.com/Images/${e.photo}`}
                     />
@@ -188,7 +188,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className="h-44 w-72  cursor-pointer border rounded m-1"
+                      className="lg:h-44 lg:w-72 lg:m-1 w-32 h-20   cursor-pointer border rounded "
                       alt=""
                       src={`https://notedb.onrender.com/Images/${e.photo}`}
                     />

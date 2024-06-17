@@ -66,8 +66,7 @@ const Noteitem = (props) => {
   useEffect(() => {
     const com = async () => {
       const res = await getcomment(props.id);
-      setcomarray(res.comments);
-      console.log(comarray);
+      if (res) setcomarray(res.comments);
     };
     com();
   }, [likes, showComments]);
