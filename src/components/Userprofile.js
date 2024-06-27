@@ -106,7 +106,7 @@ const Userprofile = () => {
       <>
         {alert && <Alert msg={msg} />}
         <div className="flex justify-center min-h-screen">
-          <div className="flex  items-center shadow-2xl rounded-lg border-2 m-5 p-5  flex-col w-[900px] h-auto">
+          <div className="flex  sm:justify-center   items-center shadow-2xl rounded-lg border-2 m-5 p-5  flex-col w-[900px] h-auto">
             <h1 className="text-2xl  font-bold">Your Account</h1>
             <div className="flex flex-col md:flex-row justify-center items-center gap-2 w-full ">
               <div className="flex lg:p-3 items-center justify-between h-auto">
@@ -139,7 +139,7 @@ const Userprofile = () => {
                   />
                 </label>
               </div>
-              <div className="flex flex-col w-full px-4">
+              <div className="flex mb-5 flex-col w-full px-4">
                 <input
                   name="name"
                   type="text"
@@ -162,12 +162,12 @@ const Userprofile = () => {
                 </button>
               </div>
             </div>
-            <div className="border-2 w-full border-gray-300 "></div>
-            <div>
+            <div className="border-2   w-full border-gray-300 "></div>
+            <div className="">
               <div className="flex gap-5  justify-around mb-5 ">
                 <div
                   onClick={handlebook}
-                  className={`flex   p-3 items-center ${
+                  className={`flex lg:p-3  p-2 items-center ${
                     book ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                   v
@@ -179,7 +179,7 @@ const Userprofile = () => {
                 </div>
                 <div
                   onClick={handlesave}
-                  className={`flex   p-3 items-center ${
+                  className={`flex lg:p-3  p-2 items-center ${
                     saved ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
@@ -190,7 +190,7 @@ const Userprofile = () => {
                 </div>
                 <div
                   onClick={handleliked}
-                  className={`flex   p-3 items-center ${
+                  className={`flex  lg:p-3  p-2   items-center ${
                     liked ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
@@ -201,7 +201,7 @@ const Userprofile = () => {
                 </div>
                 <div
                   onClick={handlepost}
-                  className={`flex   p-3 items-center ${
+                  className={`flex lg:p-3 p-2   items-center ${
                     post ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
@@ -223,7 +223,7 @@ const Userprofile = () => {
                     // important ewhen ever we give paramete in the fun we should call it like this!!!!!!!!
                   >
                     <img
-                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-15 border rounded m-1"
+                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-20 border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.photo}`}
                     />
@@ -237,7 +237,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className="lg:h-44 lg:w-72 w-36 h-12  cursor-pointer border rounded m-1"
+                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-20 border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.photo}`}
                     />
@@ -251,7 +251,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className="lg:h-44 lg:w-72 lg:m-1 w-32 h-12   cursor-pointer border rounded "
+                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-20 border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.photo}`}
                     />
@@ -265,7 +265,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e.tour._id)}
                   >
                     <img
-                      className="lg:h-44 lg:w-72 lg:m-1 w-32 h-12   cursor-pointer border rounded "
+                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-20 border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.tour.photo}`}
                     />
