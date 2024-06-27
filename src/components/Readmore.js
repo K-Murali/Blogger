@@ -100,7 +100,7 @@ const Readmore = () => {
                   className="flex items-center"
                 >
                   <AiOutlineLike className="lg:w-6 lg:h-6 sm:w-4 sm:h-4 " />
-                  <span className="sm:text-sm lg:text-md"> {likes} likes</span>
+                  <span className="sm:text-xsm lg:text-md"> {likes} likes</span>
                 </button>
                 <button
                   disabled={
@@ -109,7 +109,7 @@ const Readmore = () => {
                   className="flex items-center"
                 >
                   <FaRegComment className="lg:w-6 lg:h-6 sm:w-4 sm:h-4 mr-1" />
-                  <span className="sm:text-sm lg:text-md">
+                  <span className="sm:text-xsm  lg:text-md">
                     {currnote.comments.length}&nbsp;comments
                   </span>
                 </button>

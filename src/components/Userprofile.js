@@ -167,7 +167,7 @@ const Userprofile = () => {
               <div className="flex gap-5 justify-around mb-5">
                 <div
                   onClick={handlebook}
-                  className={`flex p-1 sm:p-1 md:p-2 lg:p-3 items-center ${
+                  className={`flex p-1 sm:p-0 md:p-2 lg:p-3 items-center ${
                     book ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
@@ -178,7 +178,7 @@ const Userprofile = () => {
                 </div>
                 <div
                   onClick={handlesave}
-                  className={`flex p-1 sm:p-1 md:p-2 lg:p-3 items-center ${
+                  className={`flex p-1 sm:p-0 md:p-2 lg:p-3 items-center ${
                     saved ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
@@ -189,7 +189,7 @@ const Userprofile = () => {
                 </div>
                 <div
                   onClick={handleliked}
-                  className={`flex p-1 sm:p-1 md:p-2 lg:p-3 items-center ${
+                  className={`flex p-1 sm:p-0 md:p-2 lg:p-3 items-center ${
                     liked ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
@@ -200,7 +200,7 @@ const Userprofile = () => {
                 </div>
                 <div
                   onClick={handlepost}
-                  className={`flex p-1 sm:p-1 md:p-2 lg:p-3 items-center ${
+                  className={`flex p-1 sm:p-0 md:p-2 lg:p-3 items-center ${
                     post ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
