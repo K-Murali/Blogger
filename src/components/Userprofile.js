@@ -164,8 +164,7 @@ const Userprofile = () => {
             </div>
             <div className="border-2   w-full border-gray-300 "></div>
             <div className="">
-              <div className="flex gap-5 justify-around mb-5">
-                <div
+            <div className="flex gap-2 justify-around mb-5">                <div
                   onClick={handlebook}
                   className={`flex p-1 sm:p-0 md:p-2 lg:p-3 items-center ${
                     book ? "border-t-2 border-info" : ""
@@ -222,7 +221,7 @@ const Userprofile = () => {
                     // important ewhen ever we give paramete in the fun we should call it like this!!!!!!!!
                   >
                     <img
-                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-20 border rounded m-1"
+                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-24 border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.photo}`}
                     />
@@ -236,7 +235,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-20 border rounded m-1"
+                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-24 border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.photo}`}
                     />
@@ -250,7 +249,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-20 border rounded m-1"
+                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-24 border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.photo}`}
                     />
@@ -264,7 +263,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e.tour._id)}
                   >
                     <img
-                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-20 border rounded m-1"
+                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-24 border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.tour.photo}`}
                     />
