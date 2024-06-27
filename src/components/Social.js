@@ -5,6 +5,7 @@ import Noteitem from "./Noteitem";
 import Alert from "./Alert";
 
 const Social = () => {
+  const naviagte = useNavigate();
   const { allnotes, mode, alert, setalert, flag, getallnotes } =
     useContext(noteContext);
 
@@ -12,11 +13,19 @@ const Social = () => {
     setalert(false);
   }, 9000);
 
+  const handlebooking = async () => {
+    const query = window.location.href.split("?")[1]
+      ? window.location.href.split("?")[1]
+      : null;
+    await getallnotes(query);
+    naviagte("/Blogger");
+  };
+
   useEffect(() => {
     getallnotes();
   }, [flag]);
   useEffect(() => {
-    getallnotes();
+    handlebooking()
   }, []);
 
   return allnotes && flag === false ? (
