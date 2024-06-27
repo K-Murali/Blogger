@@ -164,22 +164,21 @@ const Userprofile = () => {
             </div>
             <div className="border-2   w-full border-gray-300 "></div>
             <div className="">
-              <div className="flex gap-5  justify-around mb-5 ">
+              <div className="flex gap-5 justify-around mb-5">
                 <div
                   onClick={handlebook}
-                  className={`flex lg:p-3  p-2 items-center ${
+                  className={`flex p-1 sm:p-1 md:p-2 lg:p-3 items-center ${
                     book ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
-                  v
                 >
-                  <span className="mr-1 ">
+                  <span className="mr-1">
                     <LiaOpencart className="w-5 h-5" />
                   </span>
                   <span>Bookings</span>
                 </div>
                 <div
                   onClick={handlesave}
-                  className={`flex lg:p-3  p-2 items-center ${
+                  className={`flex p-1 sm:p-1 md:p-2 lg:p-3 items-center ${
                     saved ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
@@ -190,7 +189,7 @@ const Userprofile = () => {
                 </div>
                 <div
                   onClick={handleliked}
-                  className={`flex  lg:p-3  p-2   items-center ${
+                  className={`flex p-1 sm:p-1 md:p-2 lg:p-3 items-center ${
                     liked ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
@@ -201,7 +200,7 @@ const Userprofile = () => {
                 </div>
                 <div
                   onClick={handlepost}
-                  className={`flex lg:p-3 p-2   items-center ${
+                  className={`flex p-1 sm:p-1 md:p-2 lg:p-3 items-center ${
                     post ? "border-t-2 border-info" : ""
                   } cursor-pointer`}
                 >
