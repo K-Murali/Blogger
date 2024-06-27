@@ -10,7 +10,7 @@ const Formnote = () => {
     title: "",
     tag: "",
     description: "",
-    para: "",
+    photo: "",
   });
   const [isFormValid, setIsFormValid] = useState(false);
   const { alert, setalert, addnote, flag, getnote } = useContext(noteContext);
@@ -50,19 +50,36 @@ const Formnote = () => {
     validateForm();
   };
 
-  const handleclick = (e) => {
+  const handleclick = async (e) => {
     e.preventDefault();
+    const cloudinary = new FormData();
+    cloudinary.append("file", file);
+    cloudinary.append("upload_preset", "natours");
+    cloudinary.append("cloud_name", "drfvhp1jh");
 
     const formData = new FormData();
-    formData.append("title", newnote.title);
-    formData.append("tag", newnote.tag);
-    formData.append("description", newnote.description);
-    formData.append("para", newnote.para);
-    if (file) {
-      formData.append("photo", file);
-    }
 
-    addnote(formData);
+    // formData.append("title", newnote.title);
+    // formData.append("tag", newnote.tag);
+    // formData.append("description", newnote.description);
+    // formData.append("para", newnote.para);
+    // if (file) {
+    //   formData.append("photo", file);
+    //   console.log(file);
+    // }
+
+    const options = {
+      method: "POST",
+      body: cloudinary,
+    };
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/drfvhp1jh/image/upload`,
+      options
+    );
+    const ans = await res.json();
+
+    newnote.photo= ans.url.split("upload/")[1];
+    addnote(newnote);
   };
 
   return (

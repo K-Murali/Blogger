@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { noteContext } from "../context/notes/NoteState";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { auth } = useContext(noteContext);
+  const naviagte = useNavigate();
+  const { auth, getallnotes } = useContext(noteContext);
 
   const containerStyle = {
     display: "flex",
@@ -12,6 +14,17 @@ const Home = () => {
     alignItems: "center",
     height: "100vh", // Full viewport height
   };
+
+  const handlebooking = async () => {
+    const query = window.location.href.split("?")[1]
+      ? window.location.href.split("?")[1]
+      : null;
+    await getallnotes(query);
+    naviagte("/Blogger");
+  };
+  useEffect(() => {
+    handlebooking();
+  }, []);
 
   return (
     <div style={containerStyle}>

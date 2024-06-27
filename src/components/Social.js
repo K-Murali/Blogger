@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { noteContext } from "../context/notes/NoteState";
+import { useNavigate } from "react-router-dom";
 import Noteitem from "./Noteitem";
 import Alert from "./Alert";
 
@@ -14,10 +15,11 @@ const Social = () => {
   useEffect(() => {
     getallnotes();
   }, [flag]);
+  useEffect(() => {
+    getallnotes();
+  }, []);
 
-  useEffect(() => {}, [mode]);
-
-  return flag === false ? (
+  return allnotes && flag === false ? (
     "loading"
   ) : (
     <>

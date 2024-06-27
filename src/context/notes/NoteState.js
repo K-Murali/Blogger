@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import BASE_URL from "../../utils/api";
+import { BASE_URL } from "../../utils/api";
 
 export const noteContext = createContext();
 
@@ -35,8 +35,9 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         "auth-token": auth,
+        "content-type": "application/json",
       },
-      body: formData,
+      body: JSON.stringify(formData),
     };
     const res = await fetch(`${BASE_URL}/api/notes/addnote`, options);
     setloadval(60);
@@ -128,12 +129,16 @@ const NoteState = (props) => {
     }
   };
 
-  const getallnotes = async () => {
+  const getallnotes = async (query) => {
     try {
       setloadval(20);
       setloadval(20);
       setloadval(20);
-      const res = await fetch(`${BASE_URL}/api/notes/allnotes`);
+      let url = `${BASE_URL}/api/notes/allnotes`;
+      if (query) {
+        url = `${BASE_URL}/api/notes/allnotes?${query}`;
+      }
+      const res = await fetch(url);
       setloadval(60);
       const data = await res.json();
       setallnotes(data);
@@ -144,6 +149,45 @@ const NoteState = (props) => {
     }
   };
 
+  // get bookings
+  const getbooking = async () => {
+    try {
+      setloadval(20);
+      const options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": auth,
+        },
+      };
+      const res = await fetch(
+        `${BASE_URL}/api/bookings/${localStorage.getItem("userid")}`,
+        options
+      );
+      setloadval(60);
+      const temp = await res.json();
+      setuser(temp);
+      setloadval(100);
+    } catch (e) {
+      setuser(null);
+    }
+  };
+  const getuserbookings = async () => {
+    try {
+      const options = {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": auth,
+        },
+      };
+      const res = await fetch(`${BASE_URL}/api/auth/bookings`, options);
+      const ans = await res.json();
+      console.log(ans);
+      return ans;
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
   // get user
   const getuserbyid = async () => {
     try {
@@ -160,6 +204,7 @@ const NoteState = (props) => {
       const temp = await res.json();
       setuser(temp);
       setloadval(100);
+      return temp;
     } catch (e) {
       setuser(null);
     }
@@ -225,31 +270,49 @@ const NoteState = (props) => {
     setmessage("Deleted...");
   };
 
-  const editnote = async (id, title, description, tag) => {
-    setflag(false);
-    setloadval(20);
-    for (let i = 0; i < notes.length; i++) {
-      if (notes._id === id) {
-        notes[i].title = title;
-        notes[i].description = description;
-        notes[i].tag = tag;
+  const editnote = async (id, title, description, tag, formData) => {
+    try {
+      setflag(false);
+      setloadval(20);
+
+      // Update the notes array
+      const updatedNotes = notes.map((note) => {
+        if (note._id === id) {
+          return { ...note, title, description, tag };
+        }
+        return note;
+      });
+
+      setnotes(updatedNotes);
+
+      setloadval(60);
+
+      const options = {
+        method: "PUT",
+        headers: {
+          "auth-token": auth,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      };
+
+      const base_url = `${BASE_URL}/api/notes/updatenote/${id}`;
+      const response = await fetch(base_url, options);
+
+      if (!response.ok) {
+        throw new Error("Failed to update note");
       }
+
+      setflag(true);
+      setalert(true);
+      setloadval(100);
+      setmessage("Changes Updated...");
+    } catch (error) {
+      setflag(true);
+      setalert(true);
+      setloadval(100);
+      setmessage("Failed to update note");
     }
-    setloadval(60);
-    const options = {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": auth,
-      },
-      body: JSON.stringify({ title, description, tag }),
-    };
-    const base_url = `${BASE_URL}/api/notes/updatenote/${id}`;
-    await fetch(base_url, options);
-    setflag(true);
-    setalert(true);
-    setloadval(100);
-    setmessage("Changes Updated...");
   };
 
   const updateuser = async (data) => {
@@ -305,6 +368,7 @@ const NoteState = (props) => {
         getuserbyid,
         getlike,
         updateuser,
+        getuserbookings,
         mode,
 
         alert,

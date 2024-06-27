@@ -1,10 +1,10 @@
+import { LiaOpencart } from "react-icons/lia";
 import React, { useState, useEffect, useContext } from "react";
 import { noteContext } from "../context/notes/NoteState";
+import { IMAGE_URL } from "../utils/api";
 import "./noteitem.css"; // Import CSS file for styling
 import img from "./images/899048.png";
 import { useNavigate } from "react-router-dom";
-
-import { MdCloseFullscreen } from "react-icons/md";
 import { FaArrowAltCircleRight, FaRegSmileWink } from "react-icons/fa";
 import {
   AiOutlineLike,
@@ -12,11 +12,14 @@ import {
   AiOutlineDislike,
 } from "react-icons/ai";
 import { FaRegComment, FaRegBookmark, FaRegEdit } from "react-icons/fa";
+import BookTourButton from "../utils/bookings";
 
 const Readmore = () => {
   const navigate = useNavigate();
-  const { currnote, getbyid, getlike, addcomment } = useContext(noteContext);
+  const { currnote, getbyid, getlike, addcomment, getuserbookings } =
+    useContext(noteContext);
   const [likes, setlikes] = useState("");
+  const [booked, setbooked] = useState(null);
   const [newcom, setnewcom] = useState("");
   const [comarray, setcomarray] = useState("");
 
@@ -52,6 +55,10 @@ const Readmore = () => {
   };
   useEffect(() => {
     const caller = async () => {
+      const res2 = await getuserbookings();
+      if (res2.includes(localStorage.getItem("id"))) {
+        setbooked(true);
+      }
       const res = await getbyid(localStorage.getItem("id"));
       setlikes(res.likes.length);
       setcomarray(res.comments);
@@ -80,7 +87,7 @@ const Readmore = () => {
             </div>
             <img
               className="border-2 h-auto sm:w-full md:full lg:w-11/12  mb-4"
-              src={`https://notedb.onrender.com/Images/${currnote.photo}`}
+              src={`${IMAGE_URL}/${currnote.photo}`}
               alt="Post"
             />
             <div className="flex justify-between sm:w-full md:full lg:w-11/12  mb-4">
@@ -193,17 +200,24 @@ const Readmore = () => {
                 <li>Locations : tamilnadu, chennai, kerala</li>
               </ul>
             </div>
-            <div className="flex   lg:bottom-10 lg:ml-10  sm:justify-center sm: mt-10 sm:mb-10 justify-around sm:relative md:relative  lg:fixed gap-5">
-              <div>
-                <button className="  btn-sm text-sm  bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded-full">
-                  Book my Trip
-                </button>
-              </div>
-              <div>
-                <button className="  bg-blue-500 btn-sm text-sm hover:bg-blue-700 text-white font-bold  rounded-full">
-                  Book Tour Guide
-                </button>
-              </div>
+            <div
+              className="flex    sm:justify-center sm: mt-10 sm:mb-10 justify-around sm:relative md:relative  lg:relative
+             gap-5"
+            >
+              {!booked ? (
+                <div>
+                  <BookTourButton />
+                </div>
+              ) : (
+                <div>
+                  <button className="  bg-green-700 btn-sm text-md hover:bg-green-500 text-white font-bold  rounded-full">
+                    <div className="flex gap-3">
+                      <LiaOpencart className=" w-5  h-6" />
+                      Tour Booked
+                    </div>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,8 +1,8 @@
+import { IMAGE_URL } from "../utils/api";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { noteContext } from "../context/notes/NoteState";
 import Modalbox from "./Modalbox";
-import { IoIosBookmark } from "react-icons/io";
 
 import { MdCloseFullscreen } from "react-icons/md";
 import { FaArrowAltCircleRight, FaRegSmileWink } from "react-icons/fa";
@@ -11,6 +11,7 @@ import {
   AiOutlineDelete,
   AiOutlineDislike,
 } from "react-icons/ai";
+import { FaBookmark } from "react-icons/fa6";
 import { FaRegComment, FaRegBookmark, FaRegEdit } from "react-icons/fa"; // Importing FontAwesome icons
 import "./noteitem.css";
 
@@ -37,8 +38,11 @@ const Noteitem = (props) => {
     title: "",
     description: "",
     tag: "",
+    photo: "",
   });
 
+  const [photo, setphoto] = useState(null);
+  const [saved, setsaved] = useState();
   const [likes, setLikes] = useState(props.likes ? props.likes : 0);
   const [showComments, setShowComments] = useState(false); // State to toggle comments
   const [comarray, setcomarray] = useState(props.comments);
@@ -65,6 +69,14 @@ const Noteitem = (props) => {
   };
   useEffect(() => {
     const com = async () => {
+      const response = await savetour({
+        userid: props.userid,
+        tourid: props.id,
+        flag: true,
+      });
+
+      setsaved(response.flag);
+
       const res = await getcomment(props.id);
       if (res) setcomarray(res.comments);
     };
@@ -72,7 +84,8 @@ const Noteitem = (props) => {
   }, [likes, showComments]);
 
   const handlesave = async () => {
-    await savetour({ userid: props.userid, tourid: props.id });
+    const res = await savetour({ userid: props.userid, tourid: props.id });
+    setsaved(res.flag);
   };
 
   const handledelete = () => {
@@ -92,11 +105,43 @@ const Noteitem = (props) => {
     document.getElementById(`my_modal_${props.id}`).showModal();
   };
 
-  const handleedit = (e) => {
+  const handleedit = async (e) => {
     e.preventDefault();
-    editnote(props.id, newnote.title, newnote.description, newnote.tag);
-  };
 
+    const cloudinary = new FormData();
+    cloudinary.append("file", photo);
+    cloudinary.append("upload_preset", "natours");
+    cloudinary.append("cloud_name", "drfvhp1jh");
+
+    // const formData = new FormData();
+
+    // formData.append("title", newnote.title);
+    // formData.append("tag", newnote.tag);
+    // formData.append("description", newnote.description);
+    // if (photo) {
+    //   formData.append("photo", photo);
+    //   console.log(photo);
+    // }
+    const options = {
+      method: "POST",
+      body: cloudinary,
+    };
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/drfvhp1jh/image/upload`,
+      options
+    );
+    const ans = await res.json();
+
+    newnote.photo = ans.url.split("upload/")[1];
+
+    editnote(
+      props.id,
+      newnote.title,
+      newnote.description,
+      newnote.tag,
+      newnote
+    );
+  };
   const onchange = (e) => {
     setnewnote({ ...newnote, [e.target.name]: e.target.value });
   };
@@ -109,7 +154,7 @@ const Noteitem = (props) => {
             <img
               className="h-52  w-96 border rounded"
               alt=""
-              src={`https://notedb.onrender.com/Images/${props.photo}`}
+              src={`${IMAGE_URL}/${props.photo}`}
             />
           </div>
           <div className="h-48 overflow-hidden">
@@ -127,7 +172,7 @@ const Noteitem = (props) => {
                     <span className=" ml-2">{likes}</span>
                     <button
                       disabled={
-                        localStorage.getItem("token").length === 0
+                        localStorage.getItem("token")?.length === 0
                           ? true
                           : false
                       }
@@ -195,7 +240,11 @@ const Noteitem = (props) => {
                       props.del_edit_flag ? "hidden" : ""
                     }`}
                   >
-                    <FaRegBookmark className="mt-2 w-6 h-6"></FaRegBookmark>
+                    {!saved ? (
+                      <FaRegBookmark className="mt-2 w-6 h-6" />
+                    ) : (
+                      <FaBookmark className="mt-2 w-6 h-6" />
+                    )}
 
                     <div className=" mt-3 font-normal text-end   text-sm   text-gray-500">
                       {new Date(props.date).getDate()}
@@ -274,11 +323,11 @@ const Noteitem = (props) => {
             <dialog id={`my_modal_${props.id}`} className="modal">
               <Modalbox
                 title={props.title}
-                photo={props.photo}
                 description={props.description}
                 tag={props.tag}
                 key={props.id}
                 id={props.id}
+                setphoto={setphoto}
                 handleedit={handleedit}
                 onchange={onchange}
               />

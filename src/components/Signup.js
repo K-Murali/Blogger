@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { noteContext } from "../context/notes/NoteState";
-import BASE_URL from "../utils/api";
+import { BASE_URL } from "../utils/api";
 
 const Signup = () => {
   const [loginflag, setloginflag] = useState(false);
@@ -46,6 +46,7 @@ const Signup = () => {
         localStorage.setItem("name", json.name);
         localStorage.setItem("email", json.data.user.email);
         localStorage.setItem("userid", json.data.user.id);
+        localStorage.setItem("photo", json.photo);
         // localStorage.setItem("saved", json.data.user.saved);
 
         setname(json.name);

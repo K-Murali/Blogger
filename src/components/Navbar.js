@@ -3,6 +3,7 @@ import img1 from "./images/899048.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { noteContext } from "../context/notes/NoteState";
+import { IMAGE_URL } from "../utils/api";
 export default function Navbar() {
   const navigate = useNavigate();
   const [theme, setTheme] = useState(
@@ -166,7 +167,7 @@ export default function Navbar() {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full  ">
-                  <img src={img1} />
+                  <img src={`${IMAGE_URL}/${localStorage.getItem("photo")}`} />
                 </div>
               </label>
               <ul

@@ -1,11 +1,12 @@
 import React from "react";
 const Modalbox = ({
   title,
-  photo,
+  setphoto,
   description,
   tag,
   id,
   handleedit,
+
   onchange,
 }) => {
   return (
@@ -19,8 +20,6 @@ const Modalbox = ({
               className="mb-2.5  w-5/6 container  flex flex-col items-center justify-center "
               action=""
             >
-              
-         
               <label className="form-control   w-full">
                 {" "}
                 <span className="label-text flex flex-col ">
@@ -72,12 +71,20 @@ const Modalbox = ({
                 placeholder="Type here"
                 className="input mb-5  input-bordered input-success w-full"
               />
+              <input
+                name="photo"
+                type="file"
+                onChange={(e) => {
+                  setphoto(e.target.files[0]);
+                }}
+                className="file-input text-md file-input-bordered w-full"
+              />
               <button
                 name="edit"
                 value={id}
                 type="button"
                 onClick={handleedit}
-                className=" bg-info rounded p-1 h-fit text-white"
+                className=" bg-info mt-3 rounded p-1 h-fit text-white"
               >
                 Submit
               </button>
