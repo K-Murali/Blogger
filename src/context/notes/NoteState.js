@@ -89,7 +89,6 @@ const NoteState = (props) => {
     return ans;
   };
   const savetour = async (data) => {
-    setloadval(20);
     const options = {
       method: "PATCH",
       headers: {
@@ -99,9 +98,7 @@ const NoteState = (props) => {
       body: JSON.stringify(data),
     };
     const res = await fetch(`${BASE_URL}/api/auth/save`, options);
-    setloadval(60);
     const ans = await res.json();
-    setloadval(100);
     setflag(true);
     return ans;
   };

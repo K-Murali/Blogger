@@ -139,7 +139,7 @@ const Userprofile = () => {
                   />
                 </label>
               </div>
-              <div className="flex mb-5 flex-col w-full px-4">
+              <div className="flex mb-10 lg: flex-col w-full px-4">
                 <input
                   name="name"
                   type="text"
@@ -156,7 +156,7 @@ const Userprofile = () => {
                 />
                 <button
                   onClick={handlesubmit}
-                  className="p-2 hover:text-black hover:bg-gray-400 mt-5 w-fit text-sm bg-gray-600 text-white rounded"
+                  className="p-2  hover:text-black hover:bg-gray-400 mt-2  w-fit text-sm bg-gray-600 text-white rounded"
                 >
                   {loading ? "Updating..." : "Update changes"}
                 </button>
@@ -164,7 +164,9 @@ const Userprofile = () => {
             </div>
             <div className="border-2   w-full border-gray-300 "></div>
             <div className="">
-            <div className="flex gap-2 justify-around mb-5">                <div
+              <div className="flex gap-2 justify-around mb-5">
+                {" "}
+                <div
                   onClick={handlebook}
                   className={`flex p-1 sm:p-0 md:p-2 lg:p-3 items-center ${
                     book ? "border-t-2 border-info" : ""
@@ -211,7 +213,7 @@ const Userprofile = () => {
               </div>
             </div>
 
-            <div className="flex  justify-center  flex-wrap">
+            <div className="flex items-center mt-3 justify-center  flex-wrap">
               {saved &&
                 user.saved &&
                 user.saved.map((e, index) => (
@@ -221,7 +223,7 @@ const Userprofile = () => {
                     // important ewhen ever we give paramete in the fun we should call it like this!!!!!!!!
                   >
                     <img
-                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-24 border rounded m-1"
+                      className=" cursor-pointer h-44 w-72  border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.photo}`}
                     />
@@ -235,7 +237,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-24 border rounded m-1"
+                      className=" cursor-pointer h-44 w-72  border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.photo}`}
                     />
@@ -249,7 +251,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e._id)}
                   >
                     <img
-                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-24 border rounded m-1"
+                      className=" cursor-pointer h-44 w-72  border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.photo}`}
                     />
@@ -263,7 +265,7 @@ const Userprofile = () => {
                     onClick={() => handle_image_click(e.tour._id)}
                   >
                     <img
-                      className=" cursor-pointer lg:h-44 lg:w-72 w-36 h-24 border rounded m-1"
+                      className=" cursor-pointer h-44  w-72 border rounded m-1"
                       alt=""
                       src={`${IMAGE_URL}/${e.tour.photo}`}
                     />
