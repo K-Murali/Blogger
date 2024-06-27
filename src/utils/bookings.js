@@ -1,6 +1,7 @@
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
 import { LiaOpencart } from "react-icons/lia";
+import { BASE_URL } from "./api";
 const BookTourButton = () => {
   const stripePromise = loadStripe(
     "pk_test_51PV9Cz1H0Uj4HDkb9wx1XZfXZFVgpOybOB5nCDu9Lnu12WCURnN9AwkJOprxkHAoyIOjFv8t6kW3ee3458xXldL800E4U5cmDN"
@@ -15,7 +16,7 @@ const BookTourButton = () => {
       };
 
       const response = await fetch(
-        `http://localhost:8000/api/bookings/checkout-session/${localStorage.getItem(
+        `${BASE_URL}/api/bookings/checkout-session/${localStorage.getItem(
           "id"
         )}`,
         options
