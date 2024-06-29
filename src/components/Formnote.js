@@ -10,6 +10,8 @@ const Formnote = () => {
     title: "",
     tag: "",
     description: "",
+    price: "",
+    location: "",
     photo: "",
   });
   const [isFormValid, setIsFormValid] = useState(false);
@@ -78,16 +80,16 @@ const Formnote = () => {
     );
     const ans = await res.json();
 
-    newnote.photo= ans.url.split("upload/")[1];
+    newnote.photo = ans.url.split("upload/")[1];
     addnote(newnote);
   };
 
   return (
     <>
       {alert && <Alert message="This is deleted" />}
-      <div className="flex justify-center align-middle md:m-24 flex-col">
+      <div className="flex justify-center align-middle md:m-14 flex-col">
         <div>
-          <h1 className="my-5 text-center text-3xl text-pretty text-fuchsia-950">
+          <h1 className="my-5 text-center text-3xl text-pretty ">
             Create your content here
           </h1>
         </div>
@@ -97,31 +99,46 @@ const Formnote = () => {
               <input
                 name="title"
                 type="text"
-                placeholder="title"
+                placeholder="title... ( name of the place or trip )"
                 onChange={onchange}
                 className="input focus:outline-none bordered input-bordered w-full"
               />
               <input
                 name="tag"
                 type="text"
-                placeholder="tag"
+                placeholder="tag...  ( ex : hillstations ,mountains ,coolplaces ,temples ,old... )"
                 onChange={onchange}
                 className="input focus:outline-none bordered input-bordered w-full"
               />
               <input
-                name="description"
+                name="location"
                 type="text"
-                placeholder="summary"
+                placeholder="location...  ( please enter the state name )"
                 onChange={onchange}
                 className="input focus:outline-none bordered input-bordered w-full"
               />
+              <input
+                name="price"
+                type="number"
+                placeholder="Budget...  ( estimated expenses )"
+                onChange={onchange}
+                className="input focus:outline-none bordered input-bordered w-full"
+              />
+              <textarea
+                name="description"
+                rows="3"
+                placeholder="summary ... ( briefly about the experience )"
+                onChange={onchange}
+                className="input focus:outline-none bordered input-bordered w-full"
+              ></textarea>
+
               <input
                 name="photo"
                 type="file"
                 onChange={handleFileChange}
                 className="file-input text-md file-input-bordered w-full"
               />
-              <ReactQuill value={newnote.para} onChange={handleQuillChange} />
+              {/* <ReactQuill value={newnote.para} onChange={handleQuillChange} /> */}
               <button
                 type="submit"
                 onClick={handleclick}

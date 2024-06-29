@@ -1,8 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { noteContext } from "../context/notes/NoteState";
 import { useNavigate } from "react-router-dom";
 import Noteitem from "./Noteitem";
 import Alert from "./Alert";
+import Filters from "./Filters";
 
 const Social = () => {
   const naviagte = useNavigate();
@@ -22,10 +23,7 @@ const Social = () => {
   };
 
   useEffect(() => {
-    getallnotes();
-  }, [flag]);
-  useEffect(() => {
-    handlebooking()
+    handlebooking();
   }, []);
 
   return allnotes && flag === false ? (
@@ -34,37 +32,12 @@ const Social = () => {
     <>
       {alert && <Alert message="This is deleted" />}
       <div className="flex-col justify-center items-center">
-        <div className="flex-row">
-          <form className={`flex justify-center  my-10 `} role="search">
-            <input
-              id="topic"
-              className={`bg-gray-200 me-4 text-black rounded  placeholder-black   focus:outline-none cursor-black  input-bordered w-4/6 p-2 bg-${
-                !mode === "light" ? "black" : "gray"
-              } me-2 ms-2 h-13`}
-              type="text"
-              placeholder="Search here...."
-              aria-label="Search"
+       
+            <Filters
+              className={` me-2  bg-slate-600   rounded text-white  w-16 h-8 bg-${
+                mode === "dark" ? "primary" : "info"
+              }`}
             />
-            <button
-              type="button"
-              // onClick={handelsearch}
-              className={` me-2  bg-slate-600 bg- rounded text-white p-2 w-16 h-10 bg-${
-                !mode === "dark" ? "primary" : "info"
-              }`}
-            >
-              search
-            </button>
-            <button
-              type="button"
-              // onClick={handelsearch}
-              className={` me-2  bg-slate-600   rounded text-white p-2 w-16 h-10 bg-${
-                !mode === "dark" ? "primary" : "info"
-              }`}
-            >
-              Filters
-            </button>
-          </form>
-        </div>
         <div className="  flex-col items-center">
           {allnotes && allnotes.length !== 0 ? (
             <h1 className="  text-center text-3xl mt-8 "></h1>

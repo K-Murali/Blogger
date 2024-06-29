@@ -47,7 +47,7 @@ const BookTourButton = () => {
 
   return (
     <button
-      className="  bg-green-700 btn-sm text-md hover:bg-green-500 text-white font-bold  rounded-full"
+      className="  bg-green-500 btn-sm text-md hover:bg-green-400 text-white font-bold  rounded-full"
       onClick={booktour}
     >
       <div className="flex gap-3">

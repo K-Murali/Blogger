@@ -194,10 +194,10 @@ const Readmore = () => {
             </div>
             <div className=" mt-10 ml-5 ">
               <ul className=" list-disc gap-3">
+                <li> Cost : {currnote.price} -/</li>
+                <li>Average Room Cost : 800 -/day </li>
+                <li>Locations : {currnote.location}</li>
                 <li>Average rating : 4.6</li>
-                <li>Average Cost : 25k</li>
-                <li>Average Room Cost : 3k/day </li>
-                <li>Locations : tamilnadu, chennai, kerala</li>
               </ul>
             </div>
             <div

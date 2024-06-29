@@ -7,6 +7,21 @@ const NoteState = (props) => {
   const [name, setname] = useState(
     localStorage.getItem("name") ? localStorage.getItem("name") : "profile"
   );
+
+  const [searchval, setsearchval] = useState("");
+  const [query, setQuery] = useState({
+    date: {
+      gte: "",
+      lte: "",
+    },
+    price: {
+      lte: "10000",
+    },
+    sort: "-date",
+    location: "",
+    tag: "",
+  });
+
   const [userid, setuserid] = useState(
     localStorage.getItem("userid") ? localStorage.getItem("userid") : "null"
   );
@@ -131,6 +146,7 @@ const NoteState = (props) => {
       setloadval(20);
       setloadval(20);
       setloadval(20);
+      // setflag(false);
       let url = `${BASE_URL}/api/notes/allnotes`;
       if (query) {
         url = `${BASE_URL}/api/notes/allnotes?${query}`;
@@ -367,6 +383,10 @@ const NoteState = (props) => {
         updateuser,
         getuserbookings,
         mode,
+        query,
+        setQuery,
+        searchval,
+        setsearchval,
 
         alert,
         setalert,
