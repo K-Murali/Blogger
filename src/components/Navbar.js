@@ -73,13 +73,13 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/mynotes" className="text-lg">
-                      My Posts
+                    <Link to="/Blogger" className="text-lg">
+                      Home
                     </Link>
                   </li>
                   <li>
-                    <Link to="/Blogger" className="text-lg">
-                      Home
+                    <Link to="/mynotes" className="text-lg">
+                      My Posts
                     </Link>
                   </li>
                   {/* <li><Link to='/about' className='text-lg'>About</Link></li> */}

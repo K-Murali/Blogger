@@ -46,7 +46,7 @@ const Signup = () => {
         localStorage.setItem("name", json.name);
         localStorage.setItem("email", json.data.user.email);
         localStorage.setItem("userid", json.data.user.id);
-        localStorage.setItem("photo", json.photo);
+        if(json.photo)localStorage.setItem("photo", json.photo);
         // localStorage.setItem("saved", json.data.user.saved);
 
         setname(json.name);
@@ -54,7 +54,7 @@ const Signup = () => {
         setuserid(json.data.user.id);
 
         setloginflag(true);
-        navigate("/mynotes");
+        navigate("/Blogger");
       } else {
         setmsg(json.error);
       }
