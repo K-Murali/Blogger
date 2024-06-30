@@ -213,7 +213,7 @@ const Noteitem = (props) => {
                 <div className=" flex-col ">
                   <button
                     disabled={
-                      localStorage.getItem("token").length == 0 ? true : false
+                      localStorage.getItem("token")?.length == 0 ? true : false
                     }
                     onClick={handledelete}
                     className={`ml-2 rounded w-fit h-auto p-1 mt-2 mb-5 from-zinc-50 ${
@@ -233,7 +233,7 @@ const Noteitem = (props) => {
 
                   <button
                     disabled={
-                      localStorage.getItem("token").length == 0 ? true : false
+                      localStorage.getItem("token")?.length == 0 ? true : false
                     }
                     onClick={handlesave}
                     className={`ml-2 rounded w-fit h-auto  mb-5 from-zinc-50 ${
@@ -286,7 +286,7 @@ const Noteitem = (props) => {
                 />
                 <button
                   disabled={
-                    localStorage.getItem("token").length == 0 ? true : false
+                    localStorage.getItem("token")?.length == 0 ? true : false
                   }
                 >
                   <FaArrowAltCircleRight onClick={handle_comment_submit} />

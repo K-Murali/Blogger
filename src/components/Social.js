@@ -23,7 +23,14 @@ const Social = () => {
   };
 
   useEffect(() => {
-    handlebooking();
+    if (!localStorage.getItem("token")) {
+      console.log("No token");
+      naviagte("/signup");
+      return;
+    } else {
+      console.log("No token");
+      handlebooking();
+    }
   }, []);
 
   return allnotes && flag === false ? (
@@ -32,12 +39,11 @@ const Social = () => {
     <>
       {alert && <Alert message="This is deleted" />}
       <div className="flex-col justify-center items-center">
-       
-            <Filters
-              className={` me-2  bg-slate-600   rounded text-white  w-16 h-8 bg-${
-                mode === "dark" ? "primary" : "info"
-              }`}
-            />
+        <Filters
+          className={` me-2  bg-slate-600   rounded text-white  w-16 h-8 bg-${
+            mode === "dark" ? "primary" : "info"
+          }`}
+        />
         <div className="  flex-col items-center">
           {allnotes && allnotes.length !== 0 ? (
             <h1 className="  text-center text-3xl mt-8 "></h1>

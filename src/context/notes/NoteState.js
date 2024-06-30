@@ -198,7 +198,7 @@ const NoteState = (props) => {
       console.log(ans);
       return ans;
     } catch (e) {
-      console.log(e.message);
+      return e.message;
     }
   };
   // get user

@@ -142,6 +142,7 @@ const Formnote = () => {
               <button
                 type="submit"
                 onClick={handleclick}
+                disabled={!localStorage.getItem("token")}
                 className="btn btn-outline btn-success"
               >
                 Create post

@@ -167,7 +167,13 @@ export default function Navbar() {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full  ">
-                  <img src={`${IMAGE_URL}/${localStorage.getItem("photo")}`} />
+                  <img
+                    src={`${IMAGE_URL}/${
+                      localStorage.getItem("photo")
+                        ? localStorage.getItem("photo")
+                        : "v1719489972/ktr7kxohfxoxht7wqyap.jpg"
+                    }`}
+                  />
                 </div>
               </label>
               <ul
