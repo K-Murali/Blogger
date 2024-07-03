@@ -36,26 +36,20 @@
 
      Userprofile
     
-    This page shows all the events conducted by a particular department.
 
 <img src="screenshots/DepartmentHomePage.png" alt="DepartmentHomePage" title="DepartmentHomePage">
 
      Login Page
     
-    This page allows the department heads to login to their respective account. He can create, 
-    edit and also see the feedback given by the students for an event.
+
 
 <img src="screenshots/CreatePostPage.png" alt="CreatePostPage" title="CreatePostPage">
 
     Post Page
     
-    This is page to create a post by Department head.
 
 <img src="screenshots/DepartmentLogin.png" alt="DepartmentLogin" title="DepartmentLogin">
 
-     Admin Home Page
     
-    Admin is the last level of heirarchy who accepts the requests. Department head creates the post, whenever he 
-    creates or edits the request is sent to admin, he has to accept the request, only then it will be visible to the student.
 
 <img src="screenshots/AdminHomePage.png" alt="AdminHomePage" title="AdminHomePage">
