@@ -9,9 +9,9 @@
 
 ## Project Overview
 
-Destination Exploration: Users can discover different tourist spots throughout India by searching and filtering .
-Tour Guide Booking: Users can book a tour guide for their upcoming trips.
-User Interaction: Users can post, delete, and edit their recent travel experiences. They can also engage with other posts by liking and commenting.
+*Destination Exploration: Users can discover different tourist spots throughout India by searching and filtering .
+*Tour Guide Booking: Users can book a tour guide for their upcoming trips.
+*User Interaction: Users can post, delete, and edit their recent travel experiences. They can also engage with other posts by liking and commenting.
 
 ## Installation
 
