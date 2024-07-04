@@ -15,7 +15,8 @@ const Formnote = () => {
     photo: "",
   });
   const [isFormValid, setIsFormValid] = useState(false);
-  const { alert, setalert, addnote, flag, getnote } = useContext(noteContext);
+  const { alert, setalert, setmessage, addnote, flag, getnote } =
+    useContext(noteContext);
 
   // useEffect(() => {
   //   getnote();
@@ -29,8 +30,8 @@ const Formnote = () => {
   }, [alert, setalert]);
 
   const validateForm = () => {
-    const { title, tag, description, para } = newnote;
-    if (title && tag && description && para && file) {
+    const { title, tag, description, price, location } = newnote;
+    if (title && tag && description && file && price && location) {
       setIsFormValid(true);
     } else {
       setIsFormValid(false);
@@ -39,7 +40,6 @@ const Formnote = () => {
 
   const onchange = (e) => {
     setNewnote({ ...newnote, [e.target.name]: e.target.value });
-    validateForm();
   };
 
   const handleQuillChange = (value) => {
@@ -54,6 +54,13 @@ const Formnote = () => {
 
   const handleclick = async (e) => {
     e.preventDefault();
+    validateForm();
+    if (!isFormValid) {
+      setalert(true);
+      setmessage("Please fill all the fields...!");
+      return;
+    }
+    // Upload photo to cloudinary
     const cloudinary = new FormData();
     cloudinary.append("file", file);
     cloudinary.append("upload_preset", "natours");

@@ -10,7 +10,7 @@ const Filters = () => {
   //     price: {
   //       lte: "10000",
   //     },
-  //     sort: "date",
+  //     sort: "",
   //     location: "India",
   //     tag: "",
   //   });
@@ -26,7 +26,8 @@ const Filters = () => {
       searchval?.length > 0 ? searchval.split(",")[0] : query.location;
     const tag = query.tag ? `&tag=${query.tag}` : "";
     const location = query.location ? `&location=${query.location}` : "";
-    const querystr = `&sort=${query.sort}${startdate}${enddate}${price}${tag}${location}`;
+    const sort = `&sort=${query.sort}`;
+    const querystr = `${sort}${startdate}${enddate}${price}${tag}${location}`;
     await getallnotes(querystr);
   };
 
@@ -42,17 +43,20 @@ const Filters = () => {
 
   const removeFilter = (filterType) => {
     const updatedQuery = { ...query };
-    if (filterType === "date.gte") updatedQuery.date.gte = "";
-    if (filterType === "date.lte") updatedQuery.date.lte = "";
-    if (filterType === "sort") updatedQuery.sort = "-date";
-    if (filterType === "price.lte") updatedQuery.price.lte = "10000";
-    if (filterType === "tag") {
+    if (filterType == "date.gte") updatedQuery.date.gte = "";
+    if (filterType == "date.lte") updatedQuery.date.lte = "";
+    if (filterType == "sort") updatedQuery.sort = "";
+    query.sort = "";
+    if (filterType == "price.lte") updatedQuery.price.lte = "10000";
+    if (filterType == "tag") {
       setsearchval(""), (updatedQuery.tag = "");
     }
-    if (filterType === "location") {
+    if (filterType == "location") {
       setsearchval(""), (updatedQuery.location = "");
     }
+
     setQuery(updatedQuery);
+    handlefilters();
   };
 
   return (
@@ -67,7 +71,7 @@ const Filters = () => {
                 // setQuery({ ...query, tag: e.target.value });
                 // setQuery({ ...query, location: e.target.value });
               }}
-              className={`bg-gray-200 me-4 text-gray-300 rounded placeholder-black focus:outline-none cursor-black input-bordered w-4/6 p-2 bg-${
+              className={`bg-gray-200 me-4 text-balck rounded placeholder-black focus:outline-none cursor-black input-bordered w-4/6 p-2 bg-${
                 !mode === "light" ? "black" : "gray"
               } me-2 ms-2 h-13`}
               type="text"
@@ -77,7 +81,7 @@ const Filters = () => {
             <button
               type="button"
               onClick={handlefilters}
-              className={`me-2 bg-slate-600 bg-rounded   rounded text-white p-2 w-16 h-10 bg-${
+              className={`me-2 bg-slate-600 bg-rounded hover:bg-slate-200 hover:text-black  rounded text-white p-2 w-16 h-10 bg-${
                 !mode === "dark" ? "primary" : "info"
               }`}
             >
@@ -86,7 +90,7 @@ const Filters = () => {
 
             <div>
               <button
-                className={`me-2 bg-slate-600 rounded text-white p-2 w-fit h-10`}
+                className={`me-2 bg-slate-600 rounded hover:bg-slate-200 hover:text-black text-white p-2 w-fit h-10`}
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById("my_modal_3").showModal();
@@ -106,11 +110,11 @@ const Filters = () => {
                     ✕
                   </button>
 
-                  <h3 className="font-bold text-lg">Filters</h3>
-                  <div className="flex justify-around flex-wrap gap-4">
+                  <h3 className="font-bold text-center text-lg">Filters</h3>
+                  <div className="  flex justify-around flex-wrap  gap-4">
                     {/* Upload Date Section */}
-                    <div className="py-4 flex-col justify-center w-1/6">
-                      <h4 className="font-bold text-sm text-black">
+                    <div className="py-4 flex-col justify-center lg:w-1/6">
+                      <h4 className="font-bold text-center text-sm text-black">
                         UPLOAD DATE
                       </h4>
                       <div className="mt-5  ">
@@ -152,8 +156,10 @@ const Filters = () => {
                     </div>
 
                     {/* Sort By Section */}
-                    <div className="py-4 flex-col justify-center w-1/6">
-                      <h4 className="font-bold text-sm text-black">SORT BY</h4>
+                    <div className="py-4 flex-col justify-center lg:w-1/6">
+                      <h4 className="font-bold text-center text-sm text-black">
+                        SORT BY
+                      </h4>
                       <div
                         onClick={() => setQuery({ ...query, sort: "bookings" })}
                         className="text-blue-500 mt-5 underline-none block mb-2 cursor-pointer"
@@ -193,8 +199,10 @@ const Filters = () => {
                     </div>
 
                     {/* Price Section */}
-                    <div className="py-4 flex-col justify-center w-1/6">
-                      <h4 className="font-bold text-sm text-black">PRICE</h4>
+                    <div className="py-4 flex-col sm:flex sm:flex-wrap justify-center lg:w-1/6">
+                      <h4 className="font-bold text-center text-sm text-black">
+                        PRICE
+                      </h4>
                       <div
                         onClick={() =>
                           setQuery({ ...query, price: { lte: 500 } })
@@ -237,7 +245,7 @@ const Filters = () => {
                       />
                     </div>
                   </div>
-                  <div className="py-4  flex justify-center gap-3">
+                  <div className="py-4 flex flex-wrap justify-center gap-3">
                     <p className="text-sm cursor-pointer  bg-black/[0.2]   hover:bg-black/[0.4] hover:text-white rounded h-fit w-fit items-center px-2 py-1 mb-[1px] flex text-black">
                       From {query.date.gte ? query.date.gte : "2024-01-01 "} to
                       {query.date.lte ? query.date.lte : "2024-06-01"}
@@ -250,7 +258,7 @@ const Filters = () => {
                     </p>
                     <button
                       onClick={handlefilters}
-                      className="w-fit border-2 text-black-500 rounded hover:bg-gray-200 "
+                      className="w-28 border-2 bg-slate-600 bg-rounded    rounded text-white  hover:bg-slate-200 hover:text-black "
                     >
                       search tours...
                     </button>
@@ -267,7 +275,9 @@ const Filters = () => {
               From {query.date.gte}
               <button
                 className="ml-2 text-gray-500"
-                onClick={() => removeFilter("date.gte")}
+                onClick={() => {
+                  removeFilter("date.gte");
+                }}
               >
                 ✕
               </button>
@@ -278,18 +288,22 @@ const Filters = () => {
               To {query.date.lte}
               <button
                 className="ml-2 text-gray-500"
-                onClick={() => removeFilter("date.lte")}
+                onClick={() => {
+                  removeFilter("date.lte");
+                }}
               >
                 ✕
               </button>
             </p>
           )}
-          {query.sort != "-date" && (
+          {query.sort && query.sort != "-date" && (
             <p className="text-sm cursor-pointer  bg-black/[0.2]   hover:bg-black/[0.4] hover:text-white rounded h-fit w-fit items-center px-2 py-1 mb-[1px] flex text-black">
               Sort by {query.sort}
               <button
                 className="ml-2  text-gray-500"
-                onClick={() => removeFilter("sort")}
+                onClick={() => {
+                  removeFilter("sort");
+                }}
               >
                 ✕
               </button>
@@ -300,7 +314,9 @@ const Filters = () => {
               {query.tag}
               <button
                 className="ml-2  text-gray-500"
-                onClick={() => removeFilter("tag")}
+                onClick={() => {
+                  removeFilter("tag"), handlefilters();
+                }}
               >
                 ✕
               </button>
@@ -311,7 +327,9 @@ const Filters = () => {
               {query.location}
               <button
                 className="ml-2  text-gray-500"
-                onClick={() => removeFilter("location")}
+                onClick={() => {
+                  removeFilter("location"), handlefilters();
+                }}
               >
                 ✕
               </button>
@@ -322,7 +340,9 @@ const Filters = () => {
               {"<"} {query.price.lte}
               <button
                 className="ml-2  text-gray-500"
-                onClick={() => removeFilter("price.lte")}
+                onClick={() => {
+                  removeFilter("price.lte");
+                }}
               >
                 ✕
               </button>

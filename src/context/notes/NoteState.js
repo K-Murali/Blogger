@@ -17,7 +17,7 @@ const NoteState = (props) => {
     price: {
       lte: "10000",
     },
-    sort: "-date",
+    sort: "",
     location: "",
     tag: "",
   });
