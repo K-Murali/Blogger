@@ -10,16 +10,17 @@
 ## Project Overview
 
 1. Destination Exploration: Users can discover different tourist spots throughout India by searching and filtering .
+
 2. Tour Guide Booking: Users can book a tour guide for their upcoming trips.
+
 3. User Interaction: Users can post, delete, and edit their recent travel experiences. They can also engage with other posts by liking and commenting.
 
 ## Installation
 
 1. Download the zip folder.
 2. Extract the folder.
-3. Go to this location in your vscode  terminal.
+3. Go to this location in your vscode terminal.
 4. create your environment
-
 
 ## Features
 
@@ -32,24 +33,24 @@
 
     Home Page
 
-<img src="screenshots/HomePage.png" alt="HomePage" title="HomePage">
+<img src="./src/utils/Homepage.png" alt="HomePage" title="home">
 
-     Userprofile
-    
+    Userprofile
 
-<img src="screenshots/DepartmentHomePage.png" alt="DepartmentHomePage" title="DepartmentHomePage">
-
-     Login Page
-    
-
-
-<img src="screenshots/CreatePostPage.png" alt="CreatePostPage" title="CreatePostPage">
+<img src="./src/utils/Userprofile.png" alt="userprofile" title="userprofile">
 
     Post Page
-    
 
-<img src="screenshots/DepartmentLogin.png" alt="DepartmentLogin" title="DepartmentLogin">
+<img src="./src/utils/Postpage.png" alt="CreatePostPage" title="post page">
+     
+     Filters
 
-    
+<img src="./src/utils/filters.png" alt="CreatePostPage" title="post page">
 
-<img src="screenshots/AdminHomePage.png" alt="AdminHomePage" title="AdminHomePage">
+    Tour detail page
+
+<img src="./src/utils/Tourdetailpage.png" alt="details page" title="details page">
+
+    Tour booking page
+
+<img src="./src/utils/Tourbookingpage.png" alt="booking page" title="booking page">

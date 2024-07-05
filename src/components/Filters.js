@@ -112,49 +112,6 @@ const Filters = () => {
 
                   <h3 className="font-bold text-center text-lg">Filters</h3>
                   <div className="  flex justify-around flex-wrap  gap-4">
-                    {/* Upload Date Section */}
-                    <div className="py-4 flex-col justify-center lg:w-1/6">
-                      <h4 className="font-bold text-center text-sm text-black">
-                        UPLOAD DATE
-                      </h4>
-                      <div className="mt-5  ">
-                        <label
-                          htmlFor="start_date"
-                          className="block text-blue-500"
-                        >
-                          Start Date
-                        </label>
-                        <input
-                          type="date"
-                          id="start_date"
-                          onChange={(e) =>
-                            setQuery({
-                              ...query,
-                              date: { ...query.date, gte: e.target.value },
-                            })
-                          }
-                          className="w-32 mb-5 mt-2 border-2 text-black"
-                        />
-                        <label
-                          htmlFor="end_date"
-                          className="block text-blue-500"
-                        >
-                          End Date
-                        </label>
-                        <input
-                          type="date"
-                          id="end_date"
-                          onChange={(e) =>
-                            setQuery({
-                              ...query,
-                              date: { ...query.date, lte: e.target.value },
-                            })
-                          }
-                          className="w-32 mt-2 border-2 text-black"
-                        />
-                      </div>
-                    </div>
-
                     {/* Sort By Section */}
                     <div className="py-4 flex-col justify-center lg:w-1/6">
                       <h4 className="font-bold text-center text-sm text-black">
@@ -199,7 +156,7 @@ const Filters = () => {
                     </div>
 
                     {/* Price Section */}
-                    <div className="py-4 flex-col sm:flex sm:flex-wrap justify-center lg:w-1/6">
+                    <div className="py-4   flex-col sm:flex sm:flex-wrap justify-center lg:w-1/6">
                       <h4 className="font-bold text-center text-sm text-black">
                         PRICE
                       </h4>
@@ -244,6 +201,48 @@ const Filters = () => {
                         className="w-32 mt-2 border-2 text-black"
                       />
                     </div>
+                    {/* Upload Date Section */}
+                    <div className="py-4 flex-col justify-center lg:w-1/6">
+                      <h4 className="font-bold text-center text-sm text-black">
+                        UPLOAD DATE
+                      </h4>
+                      <div className="mt-5  ">
+                        <label
+                          htmlFor="start_date"
+                          className="block text-blue-500"
+                        >
+                          Start Date
+                        </label>
+                        <input
+                          type="date"
+                          id="start_date"
+                          onChange={(e) =>
+                            setQuery({
+                              ...query,
+                              date: { ...query.date, gte: e.target.value },
+                            })
+                          }
+                          className="w-32 mb-5 mt-2 border-2 text-black"
+                        />
+                        <label
+                          htmlFor="end_date"
+                          className="block text-blue-500"
+                        >
+                          End Date
+                        </label>
+                        <input
+                          type="date"
+                          id="end_date"
+                          onChange={(e) =>
+                            setQuery({
+                              ...query,
+                              date: { ...query.date, lte: e.target.value },
+                            })
+                          }
+                          className="w-32 mt-2 border-2 text-black"
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div className="py-4 flex flex-wrap justify-center gap-3">
                     <p className="text-sm cursor-pointer  bg-black/[0.2]   hover:bg-black/[0.4] hover:text-white rounded h-fit w-fit items-center px-2 py-1 mb-[1px] flex text-black">
@@ -260,7 +259,7 @@ const Filters = () => {
                       onClick={handlefilters}
                       className="w-28 border-2 bg-slate-600 bg-rounded    rounded text-white  hover:bg-slate-200 hover:text-black "
                     >
-                      search tours...
+                      search&nbsp;tours...
                     </button>
                   </div>
                 </div>
