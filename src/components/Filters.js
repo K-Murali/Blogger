@@ -42,11 +42,10 @@ const Filters = () => {
   } = useContext(noteContext);
 
   const removeFilter = (filterType) => {
-    const updatedQuery = { ...query };
+    const updatedQuery = query;
     if (filterType == "date.gte") updatedQuery.date.gte = "";
     if (filterType == "date.lte") updatedQuery.date.lte = "";
     if (filterType == "sort") updatedQuery.sort = "";
-    query.sort = "";
     if (filterType == "price.lte") updatedQuery.price.lte = "10000";
     if (filterType == "tag") {
       setsearchval(""), (updatedQuery.tag = "");
@@ -54,8 +53,11 @@ const Filters = () => {
     if (filterType == "location") {
       setsearchval(""), (updatedQuery.location = "");
     }
-
+    console.log("temp:");
+    console.log(updatedQuery);
     setQuery(updatedQuery);
+    console.log("real");
+    console.log(query);
     handlefilters();
   };
 
@@ -259,7 +261,7 @@ const Filters = () => {
                       onClick={handlefilters}
                       className="w-28 border-2 bg-slate-600 bg-rounded    rounded text-white  hover:bg-slate-200 hover:text-black "
                     >
-                      search&nbsp;tours...
+                      &nbsp;search&nbsp;tours...&nbsp;
                     </button>
                   </div>
                 </div>
