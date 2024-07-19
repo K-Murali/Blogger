@@ -21,43 +21,24 @@ const Filters = () => {
     const startdate = query.date.gte ? `&date[gte]=${query.date.gte}` : "";
     const enddate = query.date.lte ? `&date[lte]=${query.date.lte}` : "";
     const price = `&price[lte]=${query.price.lte}`;
-    query.tag = searchval?.length > 0 ? searchval.split(",")[1] : query.tag;
-    query.location =
-      searchval?.length > 0 ? searchval.split(",")[0] : query.location;
-    const tag = query.tag ? `&tag=${query.tag}` : "";
-    const location = query.location ? `&location=${query.location}` : "";
-    const sort = `&sort=${query.sort}`;
-    const querystr = `${sort}${startdate}${enddate}${price}${tag}${location}`;
+    const keyword = query.keyword ? `&keyword=${query.keyword}` : "";
+    const sort = query.sort ? `&sort=${query.sort}` : "";
+    const querystr = `${sort}${startdate}${enddate}${price}${keyword}`;
+    console.log(querystr);
     await getallnotes(querystr);
   };
 
-  const {
-    getallnotes,
-    query,
-    searchval,
-    setsearchval,
-    setQuery,
-    setflag,
-    mode,
-  } = useContext(noteContext);
+  const { getallnotes, query, setQuery, setflag, mode } =
+    useContext(noteContext);
 
   const removeFilter = (filterType) => {
     const updatedQuery = query;
     if (filterType == "date.gte") updatedQuery.date.gte = "";
     if (filterType == "date.lte") updatedQuery.date.lte = "";
     if (filterType == "sort") updatedQuery.sort = "";
+    if (filterType == "keyword") updatedQuery.keyword = "";
     if (filterType == "price.lte") updatedQuery.price.lte = "10000";
-    if (filterType == "tag") {
-      setsearchval(""), (updatedQuery.tag = "");
-    }
-    if (filterType == "location") {
-      setsearchval(""), (updatedQuery.location = "");
-    }
-    console.log("temp:");
-    console.log(updatedQuery);
     setQuery(updatedQuery);
-    console.log("real");
-    console.log(query);
     handlefilters();
   };
 
@@ -69,7 +50,7 @@ const Filters = () => {
             <input
               id="topic"
               onChange={(e) => {
-                setsearchval(e.target.value);
+                setQuery({ ...query, keyword: e.target.value });
                 // setQuery({ ...query, tag: e.target.value });
                 // setQuery({ ...query, location: e.target.value });
               }}
@@ -304,6 +285,19 @@ const Filters = () => {
                 className="ml-2  text-gray-500"
                 onClick={() => {
                   removeFilter("sort");
+                }}
+              >
+                ✕
+              </button>
+            </p>
+          )}
+          {query.keyword && (
+            <p className="text-sm cursor-pointer  bg-black/[0.2]   hover:bg-black/[0.4] hover:text-white rounded h-fit w-fit items-center px-2 py-1 mb-[1px] flex text-black">
+              for {query.keyword}
+              <button
+                className="ml-2  text-gray-500"
+                onClick={() => {
+                  removeFilter("keyword");
                 }}
               >
                 ✕

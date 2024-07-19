@@ -18,8 +18,7 @@ const NoteState = (props) => {
       lte: "10000",
     },
     sort: "",
-    location: "",
-    tag: "",
+    keyword:"",
   });
 
   const [userid, setuserid] = useState(
