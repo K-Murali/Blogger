@@ -62,6 +62,7 @@ const Filters = () => {
               aria-label="Search"
             />
             <button
+   
               type="button"
               onClick={handlefilters}
               className={`me-2 bg-slate-600 bg-rounded hover:bg-slate-200 hover:text-black  rounded text-white p-2 w-16 h-10 bg-${
